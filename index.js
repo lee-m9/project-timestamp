@@ -18,12 +18,7 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/views/index.html');
 });
 
-// your first API endpoint...
-app.get('/api/hello', function (req, res) {
-	res.json({ greeting: 'hello API' });
-});
-
-app.get('/api/:date', function (req, res) {
+app.get('/api/:date?', function (req, res) {
 	const reqDate = req.params.date;
 	if (reqDate) {
 		let date;
@@ -39,6 +34,11 @@ app.get('/api/:date', function (req, res) {
 	} else {
 		res.json({ unix: Date.now(), utc: new Date().toUTCString() });
 	}
+});
+
+// your first API endpoint...
+app.get('/api/hello', function (req, res) {
+	res.json({ greeting: 'hello API' });
 });
 
 // listen for requests :)
